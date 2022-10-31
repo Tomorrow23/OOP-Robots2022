@@ -6,7 +6,14 @@ import java.awt.event.KeyEvent;
 
 public class MenuBarGenerator {
 
-    JMenuBar generateMenuBar(JFrame frame) {
+    private JFrame frame;
+
+    public MenuBarGenerator(JFrame frame){
+
+        this.frame = frame;
+    }
+
+    JMenuBar generateMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu exitMenu = generateExitMenu();
         JMenu lookAndFeelMenu = generateLookAndFeelMenu(frame);

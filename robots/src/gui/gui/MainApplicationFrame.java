@@ -30,21 +30,21 @@ public class MainApplicationFrame extends JFrame
         setContentPane(desktopPane);
         
         
-        LogWindow logWindow = createLogWindow();
+        gui.LogWindow logWindow = createLogWindow();
         addWindow(logWindow);
 
-        GameWindow gameWindow = new GameWindow();
+        gui.GameWindow gameWindow = new gui.GameWindow();
         gameWindow.setSize(400,  400);
         addWindow(gameWindow);
 
-        MenuBarGenerator menuGenerator = new MenuBarGenerator();
-        setJMenuBar(menuGenerator.generateMenuBar(this));
+        gui.MenuBarGenerator menuGenerator = new gui.MenuBarGenerator(this);
+        setJMenuBar(menuGenerator.generateMenuBar());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
-    private LogWindow createLogWindow()
+    private gui.LogWindow createLogWindow()
     {
-        LogWindow logWindow = new LogWindow(Logger.getDefaultLogSource());
+        gui.LogWindow logWindow = new gui.LogWindow(Logger.getDefaultLogSource());
         logWindow.setLocation(10,10);
         logWindow.setSize(300, 800);
         setMinimumSize(logWindow.getSize());
@@ -58,33 +58,5 @@ public class MainApplicationFrame extends JFrame
         desktopPane.add(frame);
         frame.setVisible(true);
     }
-    
-//    protected JMenuBar createMenuBar() {
-//        JMenuBar menuBar = new JMenuBar();
-// 
-//        //Set up the lone menu.
-//        JMenu menu = new JMenu("Document");
-//        menu.setMnemonic(KeyEvent.VK_D);
-//        menuBar.add(menu);
-// 
-//        //Set up the first menu item.
-//        JMenuItem menuItem = new JMenuItem("New");
-//        menuItem.setMnemonic(KeyEvent.VK_N);
-//        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-//                KeyEvent.VK_N, ActionEvent.ALT_MASK));
-//        menuItem.setActionCommand("new");
-////        menuItem.addActionListener(this);
-//        menu.add(menuItem);
-// 
-//        //Set up the second menu item.
-//        menuItem = new JMenuItem("Quit");
-//        menuItem.setMnemonic(KeyEvent.VK_Q);
-//        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-//                KeyEvent.VK_Q, ActionEvent.ALT_MASK));
-//        menuItem.setActionCommand("quit");
-////        menuItem.addActionListener(this);
-//        menu.add(menuItem);
-// 
-//        return menuBar;
-//    }
+
 }
