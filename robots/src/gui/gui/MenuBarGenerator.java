@@ -13,7 +13,7 @@ public class MenuBarGenerator {
         this.frame = frame;
     }
 
-    JMenuBar generateMenuBar() {
+    public JMenuBar generateMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu exitMenu = generateExitMenu();
         JMenu lookAndFeelMenu = generateLookAndFeelMenu(frame);
