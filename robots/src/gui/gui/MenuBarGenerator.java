@@ -68,7 +68,7 @@ public class MenuBarGenerator {
 
     private JMenu generateExitMenu() {
         var exitMenu = new JMenu("Файл");
-        var exitItem = new JMenuItem("выход") {
+        var exitItem = new JMenuItem("Выход") {
         };
 
         exitItem.addActionListener(e -> exitManager());
