@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import gui.FrameSaver.PaneSaver;
 import log.Logger;
 
 /**
@@ -17,6 +18,8 @@ import log.Logger;
 public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
+
+    private final gui.FrameSaver.PaneSaver saver = new PaneSaver();
     
     MainApplicationFrame() {
         //Make the big window be indented 50 pixels from each edge
@@ -38,8 +41,9 @@ public class MainApplicationFrame extends JFrame
         addWindow(gameWindow);
 
         gui.MenuBarGenerator menuGenerator = new gui.MenuBarGenerator(this);
-        setJMenuBar(menuGenerator.generateMenuBar());
+        setJMenuBar(menuGenerator.generateMenuBar(e -> saver.WriteToFile(desktopPane)));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        saver.LoadSettings(desktopPane);
     }
     
     private gui.LogWindow createLogWindow()

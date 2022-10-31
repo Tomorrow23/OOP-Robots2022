@@ -2,6 +2,7 @@ package gui;
 import log.Logger;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class MenuBarGenerator {
@@ -13,9 +14,9 @@ public class MenuBarGenerator {
         this.frame = frame;
     }
 
-    public JMenuBar generateMenuBar() {
+    public JMenuBar generateMenuBar(ActionListener exitListener) {
         JMenuBar menuBar = new JMenuBar();
-        JMenu exitMenu = generateExitMenu();
+        JMenu exitMenu = generateExitMenu(exitListener);
         JMenu lookAndFeelMenu = generateLookAndFeelMenu(frame);
         JMenu testMenu = generateTestMenu();
 
@@ -73,12 +74,12 @@ public class MenuBarGenerator {
         return lookAndFeelMenu;
     }
 
-    private JMenu generateExitMenu() {
+    private JMenu generateExitMenu(ActionListener exitListener) {
         var exitMenu = new JMenu("Файл");
         var exitItem = new JMenuItem("Выход") {
         };
-
         exitItem.addActionListener(e -> exitManager());
+        exitItem.addActionListener(exitListener);
         exitMenu.add(exitItem);
         return exitMenu;
     }
