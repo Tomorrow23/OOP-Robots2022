@@ -66,18 +66,18 @@ public class PaneSaver {
         return frameStates;
     }
 
-    public void LoadSettings(JDesktopPane desktopPane) {
+    public void loadSettings(JDesktopPane desktopPane) {
         HashMap<String, gui.FrameSaver.FrameInformation> frameStates = ReadFrameStates();
         for (var frame : desktopPane.getAllFrames()) {
             if (!frameStates.containsKey(frame.getTitle()))
                 continue;
 
             var newFrameState = frameStates.get(frame.getTitle());
-            frame.setLocation(new Point(newFrameState.x, newFrameState.y));
-            frame.setSize(newFrameState.width, newFrameState.height);
+            frame.setLocation(new Point(newFrameState.x(), newFrameState.y()));
+            frame.setSize(newFrameState.width(), newFrameState.height());
             try {
-                frame.setIcon(newFrameState.isIcon);
-                frame.setMaximum(newFrameState.isMaximum);
+                frame.setIcon(newFrameState.isIcon());
+                frame.setMaximum(newFrameState.isMaximum());
             } catch (PropertyVetoException e) {
                 e.printStackTrace();
             }

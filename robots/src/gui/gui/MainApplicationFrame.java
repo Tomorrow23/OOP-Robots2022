@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -43,7 +42,7 @@ public class MainApplicationFrame extends JFrame
         gui.MenuBarGenerator menuGenerator = new gui.MenuBarGenerator(this);
         setJMenuBar(menuGenerator.generateMenuBar(e -> saver.WriteToFile(desktopPane)));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        saver.LoadSettings(desktopPane);
+        saver.loadSettings(desktopPane);
     }
     
     private gui.LogWindow createLogWindow()

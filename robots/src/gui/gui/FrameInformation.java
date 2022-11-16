@@ -1,21 +1,4 @@
 package gui.FrameSaver;
 
-public class FrameInformation
-{
-    public FrameInformation(int x, int y, int width, int height, boolean isMaximum, boolean isIcon)
-    {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.isMaximum = isMaximum;
-        this.isIcon = isIcon;
-    }
+public record FrameInformation(int x, int y, int width, int height, boolean isMaximum, boolean isIcon){}
 
-    public final int x;
-    public final int y;
-    public final int width;
-    public final int height;
-    public final boolean isMaximum;
-    public final boolean isIcon;
-}
