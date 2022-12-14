@@ -1,4 +1,3 @@
-package gui;
 import log.Logger;
 
 import javax.swing.*;
@@ -89,8 +88,6 @@ public class MenuBarGenerator {
             SwingUtilities.updateComponentTreeUI(frame);
         } catch (ClassNotFoundException | InstantiationException
                  | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            // just ignore
         }
     }
-
 }

@@ -1,28 +1,15 @@
-package gui;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.*;
-
-import gui.FrameSaver.PaneSaver;
 import log.Logger;
 
-/**
- * Что требуется сделать:
- * 1. Метод создания меню перегружен функционалом и трудно читается. 
- * Следует разделить его на серию более простых методов (или вообще выделить отдельный класс).
- *
- */
 public class MainApplicationFrame extends JFrame
 {
     private final JDesktopPane desktopPane = new JDesktopPane();
 
-    private final gui.FrameSaver.PaneSaver saver = new PaneSaver();
+    private final PaneSaver saver = new PaneSaver(new FilePaneSaver(), new FramesLoader());
     
     MainApplicationFrame() {
-        //Make the big window be indented 50 pixels from each edge
-        //of the screen.
         int inset = 50;        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(inset, inset,
@@ -30,24 +17,22 @@ public class MainApplicationFrame extends JFrame
             screenSize.height - inset*2);
 
         setContentPane(desktopPane);
-        
-        
-        gui.LogWindow logWindow = createLogWindow();
+        LogWindow logWindow = createLogWindow();
         addWindow(logWindow);
 
-        gui.GameWindow gameWindow = new gui.GameWindow();
+        GameWindow gameWindow = new GameWindow();
         gameWindow.setSize(400,  400);
         addWindow(gameWindow);
 
-        gui.MenuBarGenerator menuGenerator = new gui.MenuBarGenerator(this);
+        MenuBarGenerator menuGenerator = new MenuBarGenerator(this);
         setJMenuBar(menuGenerator.generateMenuBar(e -> saver.WriteToFile(desktopPane)));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         saver.loadSettings(desktopPane);
     }
     
-    private gui.LogWindow createLogWindow()
+    private LogWindow createLogWindow()
     {
-        gui.LogWindow logWindow = new gui.LogWindow(Logger.getDefaultLogSource());
+        LogWindow logWindow = new LogWindow(Logger.getDefaultLogSource());
         logWindow.setLocation(10,10);
         logWindow.setSize(300, 800);
         setMinimumSize(logWindow.getSize());
@@ -61,5 +46,4 @@ public class MainApplicationFrame extends JFrame
         desktopPane.add(frame);
         frame.setVisible(true);
     }
-
 }
